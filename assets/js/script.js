@@ -81,8 +81,9 @@ $(function () {
 
   // Display the current date in the header of the page.
   const dateEl = $("#currentDay");
-  dateEl.text(dayjs().format("MMMM DD, YYYY"));
-  setInterval(function() {
-    dateEl.text(dayjs().format("MMMM DD, YYYY"));
-  }, 1000);
+  function renderDate() {
+    dateEl.text(dayjs().format("dddd, MMMM DD[th]"));
+  }
+  renderDate();
+  setInterval(renderDate, 1000);
 });
