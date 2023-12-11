@@ -29,25 +29,19 @@ $(function () {
       timeBlockEl = $("#hour-" + i);
       // For blocks before the current time, set to past
       if (i < hour) {
-        if (timeBlockEl.hasClass("present")) {
-          timeBlockEl.removeClass("present");
-        }
-        if (!timeBlockEl.hasClass("past")) {
-          timeBlockEl.addClass("past");
-        }
+        timeBlockEl.addClass("past");
+        timeBlockEl.removeClass("present");
+        timeBlockEl.removeClass("future");
         // For the block matching current time, set to present
       } else if (i === hour) {
-        if (timeBlockEl.hasClass("future")) {
-          timeBlockEl.removeClass("future");
-        }
-        if (!timeBlockEl.hasClass("present")) {
-          timeBlockEl.addClass("present");
-        }
+        timeBlockEl.removeClass("past");
+        timeBlockEl.addClass("present");
+        timeBlockEl.removeClass("future");
         // For the blocks after the current time, set to future
       } else {
-        if (!timeBlockEl.hasClass("future")) {
-          timeBlockEl.addClass("future");
-        }
+        timeBlockEl.removeClass("past");
+        timeBlockEl.removeClass("present");
+        timeBlockEl.addClass("future");
       }
     }
   }
