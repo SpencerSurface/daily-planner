@@ -35,7 +35,7 @@ $(function () {
 
   // Render the date immediately, then repeatedly as time goes on
   renderDate();
-  setInterval(renderDate, 1000);
+  setInterval(renderDate, 10000);
 });
 
 
