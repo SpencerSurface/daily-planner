@@ -22,32 +22,42 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   function updateTimeClass() {
+    // Get the current hour in 24-hour time
     let hour = dayjs().hour();
-    let itemId;
-    let item;
+    // Store each time block element
+    let timeBlockEl;
+    // For each hour, set the correct class
     for (let i = 9; i < 18; i++) {
-      item = $("#hour-" + i);
+      // Get the time block element
+      timeBlockEl = $("#hour-" + i);
+      // For blocks before the current time, set to past
       if (i < hour) {
-        if (item.hasClass("present")) {
-          item.removeClass("present");
+        if (timeBlockEl.hasClass("present")) {
+          timeBlockEl.removeClass("present");
         }
-        if (item.hasClass("future")) {
-          item.removeClass("future");
+        if (!timeBlockEl.hasClass("past")) {
+          timeBlockEl.addClass("past");
         }
-        if (!item.hasClass("past")) {
-          item.addClass("past");
-        }
+        // For the block matching current time, set to present
       } else if (i === hour) {
-        if (item.hasClass("future")) {
-          item.removeClass("future");
+        if (timeBlockEl.hasClass("future")) {
+          timeBlockEl.removeClass("future");
         }
-        item.addClass("present");
+        if (!timeBlockEl.hasClass("present")) {
+          timeBlockEl.addClass("present");
+        }
+        // For the blocks after the current time, set to future
+      } else {
+        if (!timeBlockEl.hasClass("future")) {
+          timeBlockEl.addClass("future");
+        }
       }
     }
   }
 
+  // Update the classes immediately, then repeatedly as time goes on
   updateTimeClass();
-  setInterval(updateTimeClass, 1000);
+  setInterval(updateTimeClass, 10000);
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
