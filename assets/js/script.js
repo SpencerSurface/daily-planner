@@ -17,35 +17,6 @@ $(function () {
     }
   });
 
-  // Apply the past, present, or future class to each time block by comparing the id to the current hour
-  function updateTimeClass() {
-    // Get the current hour in 24-hour time
-    let hour = dayjs().hour();
-    // Store each time block element
-    let timeBlockEl;
-    // For each hour, set the correct class
-    for (let i = 9; i < 18; i++) {
-      // Get the time block element
-      timeBlockEl = $("#hour-" + i);
-      // For blocks before the current time, set to past
-      if (i < hour) {
-        timeBlockEl.addClass("past");
-        timeBlockEl.removeClass("present");
-        timeBlockEl.removeClass("future");
-        // For the block matching current time, set to present
-      } else if (i === hour) {
-        timeBlockEl.removeClass("past");
-        timeBlockEl.addClass("present");
-        timeBlockEl.removeClass("future");
-        // For the blocks after the current time, set to future
-      } else {
-        timeBlockEl.removeClass("past");
-        timeBlockEl.removeClass("present");
-        timeBlockEl.addClass("future");
-      }
-    }
-  }
-
   // Update the classes immediately, then repeatedly as time goes on
   updateTimeClass();
   setInterval(updateTimeClass, 10000);
@@ -62,12 +33,45 @@ $(function () {
     }
   }
 
-  // Display the current date in the header of the page
-  const dateEl = $("#currentDay");
-  function renderDate() {
-    dateEl.text(dayjs().format("dddd, MMMM DD[th]"));
-  }
   // Render the date immediately, then repeatedly as time goes on
   renderDate();
   setInterval(renderDate, 1000);
 });
+
+
+
+// Function definitions:
+
+// Apply the past, present, or future class to each time block by comparing the id to the current hour
+function updateTimeClass() {
+  // Get the current hour in 24-hour time
+  let hour = dayjs().hour();
+  // Store each time block element
+  let timeBlockEl;
+  // For each hour, set the correct class
+  for (let i = 9; i < 18; i++) {
+    // Get the time block element
+    timeBlockEl = $("#hour-" + i);
+    // For blocks before the current time, set to past
+    if (i < hour) {
+      timeBlockEl.addClass("past");
+      timeBlockEl.removeClass("present");
+      timeBlockEl.removeClass("future");
+      // For the block matching current time, set to present
+    } else if (i === hour) {
+      timeBlockEl.removeClass("past");
+      timeBlockEl.addClass("present");
+      timeBlockEl.removeClass("future");
+      // For the blocks after the current time, set to future
+    } else {
+      timeBlockEl.removeClass("past");
+      timeBlockEl.removeClass("present");
+      timeBlockEl.addClass("future");
+    }
+  }
+}
+
+// Display the current date in the header of the page
+function renderDate() {
+  $("#currentDay").text(dayjs().format("dddd, MMMM DD[th]"));
+}
