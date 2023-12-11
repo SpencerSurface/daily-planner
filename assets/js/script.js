@@ -15,6 +15,8 @@ $(function () {
     } else {
       localStorage.removeItem(itemId);
     }
+    // Display a blurb below the header
+    displayBlurb();
   });
 
   // Update the classes immediately, then repeatedly as time goes on
@@ -41,6 +43,14 @@ $(function () {
 
 
 // Function definitions:
+
+// Display a blurb in the header informing the user their content was saved
+function displayBlurb() {
+  $("#hour-9").before("<p id='blurb'>Appointment added to <span style='font-family:monospace'>localStorage</span> ✅︎</p>");
+  setTimeout(function() {
+    $("#blurb").remove();
+  }, 5000);
+}
 
 // Apply the past, present, or future class to each time block by comparing the id to the current hour
 function updateTimeClass() {
