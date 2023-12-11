@@ -9,10 +9,16 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   $(".saveBtn").click(function(event) {
+    // Get the id of the time block containing the targetted save button
     let itemId = $(this).parent().attr("id");
+    // Get the content of the textarea sibling of the targetted save button
     let itemText = $(this).siblings(".description").val();
+    // If there's content, save it
     if (itemText !== "") {
       localStorage.setItem(itemId, itemText);
+      // If there's no content, remove saved content if it exists
+    } else {
+      localStorage.removeItem(itemId);
     }
   });
 
