@@ -49,7 +49,7 @@ function displayBlurb() {
   $("#hour-9").before("<p id='blurb'>Appointment added to <span style='font-family:monospace'>localStorage</span> ✅︎</p>");
   setTimeout(function() {
     $("#blurb").remove();
-  }, 5000);
+  }, 3000);
 }
 
 // Apply the past, present, or future class to each time block by comparing the id to the current hour
