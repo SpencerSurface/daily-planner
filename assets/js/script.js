@@ -83,5 +83,19 @@ function updateTimeClass() {
 
 // Display the current date in the header of the page
 function renderDate() {
-  $("#currentDay").text(dayjs().format("dddd, MMMM DD[th]"));
+  let ordinalStr = ordinal(dayjs().date());
+  $("#currentDay").text(dayjs().format("dddd, MMMM D["+ordinalStr+"]"));
+}
+
+// Generate the ordinal for any positive integer, return as a string
+function ordinal(num) {
+  let ordinalStr = "th";
+  if (num % 10 === 1 && num % 100 !== 11) {
+    ordinalStr = "st";
+  } else if (num % 10 === 2 && num % 100 !== 12) {
+    ordinalStr = "nd";
+  } else if (num % 10 === 3 && num % 100 !== 13) {
+    ordinalStr = "rd";
+  }
+  return ordinalStr
 }
