@@ -46,9 +46,17 @@ $(function () {
 
 // Display a blurb in the header informing the user their content was saved
 function displayBlurb() {
-  $("#hour-9").before("<p id='blurb'>Appointment added to <span style='font-family:monospace'>localStorage</span> ✅︎</p>");
+  // Create the blurb
+  let blurbEl = document.createElement("p");
+  blurbEl.setAttribute("class", "blurb");
+  blurbEl.innerHTML = "Appointment added to <span style='font-family:monospace'>localStorage</span> ✅︎";
+  // Insert the blurb in the main div, before the first timeblock
+  let firstTimeBlock = document.querySelector("#hour-9")
+  let mainDiv = firstTimeBlock.parentElement;
+  mainDiv.insertBefore(blurbEl, firstTimeBlock);
+  // Delete the blurb after three seconds
   setTimeout(function() {
-    $("#blurb").remove();
+    blurbEl.remove();
   }, 3000);
 }
 
